@@ -9,8 +9,10 @@ public:
     Vector(size_t capasity);
     void PushBack(int num);
     int PopBack();
+    size_t Size() const;
     void Clear();
     ~Vector();
+    void Print() const;
 
 private:
     int* m_buffer = nullptr;
