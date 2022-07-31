@@ -11,5 +11,15 @@ int main(int argc, char** argv) {
     }
     
     vector.Print();
+
+    while (!vector.Empty())
+    {
+        int cur = vector.PopBack();
+        std::cout << cur  << " ";
+    }
+    std::cout << "\n";
+    
+
+    vector.Print();
     return 0;
 }

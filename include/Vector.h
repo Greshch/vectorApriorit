@@ -10,6 +10,7 @@ public:
     void PushBack(int num);
     int PopBack();
     size_t Size() const;
+    bool Empty() const;
     void Clear();
     ~Vector();
     void Print() const;

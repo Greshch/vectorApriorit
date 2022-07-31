@@ -29,6 +29,11 @@ size_t Vector::Size() const
     return m_size;
 }
 
+bool Vector::Empty() const
+{
+    return m_size == 0;
+}
+
 void Vector::PushBack(int num)
 {
     if (m_size == m_capasity - 1) // if buffer is full - realocate memory and copy data
@@ -48,6 +53,16 @@ void Vector::PushBack(int num)
     }
 
     m_buffer[m_size++] = num;
+}
+
+int Vector::PopBack()
+{
+    if (Empty())
+    {
+        std::cerr << "Empty vector error!!..\n";
+        exit(0);
+    }
+    return m_buffer[--m_size];
 }
 
 void Vector::Print() const
