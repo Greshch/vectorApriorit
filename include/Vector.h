@@ -14,6 +14,7 @@ public:
     bool Empty() const;
     void Clear();
     void Resize(size_t size);
+    void Reserve(size_t n);
     ~Vector();
     void Print() const;
 

@@ -73,7 +73,9 @@ void Vector::PushBack(int num)
 
 void Vector::Resize(size_t size)
 {
-    m_capasity = size;
+    //m_capasity = size;
+    Reserve(size);
+
     int* tmp = new int[m_capasity];
     for (size_t i = 0; i < m_capasity; i++) // copy data from old memeory
     {
@@ -88,8 +90,11 @@ void Vector::Resize(size_t size)
     }
     Clear(); // free old memory
     m_buffer = tmp; // link to new memory  
-  
-    
+}
+
+void Vector::Reserve(size_t n)
+{
+    m_capasity = n;
 }
 
 int Vector::PopBack()
