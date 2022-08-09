@@ -71,6 +71,22 @@ void Vector::PushBack(int num)
     m_buffer[m_size++] = num;
 }
 
+void Vector::Insert(size_t pos, int val)
+{
+    if (m_size >= m_capasity)
+    {
+        //It should think about realocation/ Now just double.
+        Resize(m_capasity * 2);
+    }
+
+    for (size_t i = m_size; i > pos; i--)
+    {
+        m_buffer[i] = m_buffer[i - 1];
+    }
+    m_buffer[pos] = val;
+    ++m_size;
+}
+
 void Vector::Resize(size_t size)
 {
     //m_capasity = size;

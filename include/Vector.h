@@ -15,6 +15,7 @@ public:
     void Clear();
     void Resize(size_t size);
     void Reserve(size_t n);
+    void Insert(size_t pos, int val);
     ~Vector();
     void Print() const;
 
