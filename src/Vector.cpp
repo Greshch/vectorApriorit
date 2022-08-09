@@ -46,23 +46,50 @@ bool Vector::Empty() const
 
 void Vector::PushBack(int num)
 {
-    if (m_size == m_capasity - 1) // if buffer is full - realocate memory and copy data
-    {
-        //std::cout << "#realloc m_size = " << m_size << "\n";
-        // Allocate new memory for data
-        m_capasity *= 2;
-        int* tmp = new int[m_capasity];
-        for (size_t i = 0; i < m_size; i++) // copy data from old memeory
-        {
-            tmp[i] = m_buffer[i];
-        }
-        
-        Clear(); // free old memory
+    //if (m_size == m_capasity - 1) // if buffer is full - realocate memory and copy data
+    //{
+    //    //std::cout << "#realloc m_size = " << m_size << "\n";
+    //    // Allocate new memory for data
+    //    m_capasity *= 2;
+    //    int* tmp = new int[m_capasity];
+    //    for (size_t i = 0; i < m_size; i++) // copy data from old memeory
+    //    {
+    //        tmp[i] = m_buffer[i];
+    //    }
+    //    
+    //    Clear(); // free old memory
 
-        m_buffer = tmp; // link to new memory
+    //    m_buffer = tmp; // link to new memory
+    //}
+
+    if (m_size >= m_capasity)
+    {
+        //It should think about realocation/ Now just double.
+        Resize(m_capasity * 2);
     }
 
     m_buffer[m_size++] = num;
+}
+
+void Vector::Resize(size_t size)
+{
+    m_capasity = size;
+    int* tmp = new int[m_capasity];
+    for (size_t i = 0; i < m_capasity; i++) // copy data from old memeory
+    {
+        if (i < m_size) // copy old values
+        {
+            tmp[i] = m_buffer[i];
+        }
+        else // fill new reserves by 0.
+        {
+            tmp[i] = 0;
+        }
+    }
+    Clear(); // free old memory
+    m_buffer = tmp; // link to new memory  
+  
+    
 }
 
 int Vector::PopBack()

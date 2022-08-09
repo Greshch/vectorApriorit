@@ -13,6 +13,7 @@ public:
     size_t Size() const;
     bool Empty() const;
     void Clear();
+    void Resize(size_t size);
     ~Vector();
     void Print() const;
 
