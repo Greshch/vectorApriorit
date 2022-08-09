@@ -1,7 +1,7 @@
 #include "Vector.h"
 
 Vector::Vector() :
-                    Vector(Vector::capasityDefault)
+        Vector(Vector::capasityDefault)
 {
 
 }
@@ -11,6 +11,16 @@ Vector::Vector(size_t capasity) :
                     m_buffer(new int[capasity]) // ?? why m_buffer(new int[m_capasity]) is not work
 {
 
+}
+
+Vector::Vector(int val, size_t size) :
+        Vector(size)
+{
+    m_size = size;
+    for (size_t i = 0; i < m_size; i++)
+    {
+        m_buffer[i] = val;
+    }
 }
 
 Vector::~Vector()

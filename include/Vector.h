@@ -7,6 +7,7 @@ class Vector {
 public:
     Vector();
     Vector(size_t capasity);
+    Vector(int val, size_t size);
     void PushBack(int num);
     int PopBack();
     size_t Size() const;
