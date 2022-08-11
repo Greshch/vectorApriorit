@@ -1,7 +1,4 @@
-#ifndef _VECTOR_H_
-#define _VECTOR_H_
-
-#include <iostream>
+#pragma
 
 class Vector {
 public:
@@ -26,5 +23,3 @@ private:
     static const size_t capasityDefault = 10;
 };
 
-
-#endif
