@@ -7,8 +7,8 @@ Vector::Vector() :
 }
 
 Vector::Vector(size_t capasity) :
-                    m_capasity(capasity),
-                    m_buffer(new int[capasity]) // ?? why m_buffer(new int[m_capasity]) is not work
+        m_capasity(capasity),
+        m_buffer(new int[capasity]) // ?? why m_buffer(new int[m_capasity]) is not work
 {
 
 }
@@ -62,18 +62,19 @@ void Vector::PushBack(int num)
     //    m_buffer = tmp; // link to new memory
     //}
 
-    if (m_size >= m_capasity)
+    if (m_size == m_capasity)
     {
         //It should think about realocation/ Now just double.
         Resize(m_capasity * 2);
     }
 
-    m_buffer[m_size++] = num;
+    m_buffer[m_size] = num;
+    ++m_size;
 }
 
 void Vector::Insert(size_t pos, int val)
 {
-    if (m_size >= m_capasity)
+    if (m_size == m_capasity)
     {
         //It should think about realocation/ Now just double.
         Resize(m_capasity * 2);
@@ -90,27 +91,51 @@ void Vector::Insert(size_t pos, int val)
 void Vector::Resize(size_t size)
 {
     //m_capasity = size;
-    Reserve(size);
+    //Reserve(size);
 
-    int* tmp = new int[m_capasity];
-    for (size_t i = 0; i < m_capasity; i++) // copy data from old memeory
+    //int* tmp = new int[m_capasity];
+    //for (size_t i = 0; i < m_capasity; i++) // copy data from old memeory
+    //{
+    //    if (i < m_size) // copy old values
+    //    {
+    //        tmp[i] = m_buffer[i];
+    //    }
+    //    else // fill new reserves by 0.
+    //    {
+    //        tmp[i] = 0;
+    //    }
+    //}
+    //Clear(); // free old memory
+    //m_buffer = tmp; // link to new memory  
+
+    if (size > m_capasity)
     {
-        if (i < m_size) // copy old values
+        Reserve(size);
+        for (size_t i = m_size; i < size; i++)
+        {
+            m_buffer[i] = 0;
+        }
+    }
+}
+
+void Vector::Reserve(size_t newCapasity)
+{
+    if (newCapasity < m_capasity)
+    {
+        std::cerr << "It can't reduce capasity\n";
+        return;
+    }
+    else if (newCapasity > m_capasity)
+    {
+        int* tmp = new int[newCapasity];
+        for (size_t i = 0; i < m_size; i++) // copy data from old memeory
         {
             tmp[i] = m_buffer[i];
         }
-        else // fill new reserves by 0.
-        {
-            tmp[i] = 0;
-        }
+        Clear(); // free old memory
+        m_buffer = tmp; // link to new memory 
+        m_capasity = newCapasity;
     }
-    Clear(); // free old memory
-    m_buffer = tmp; // link to new memory  
-}
-
-void Vector::Reserve(size_t n)
-{
-    m_capasity = n;
 }
 
 int Vector::PopBack()
@@ -120,7 +145,8 @@ int Vector::PopBack()
         std::cerr << "Empty vector error!!..\n";
         exit(0);
     }
-    return m_buffer[--m_size];
+    --m_size;
+    return m_buffer[m_size];
 }
 
 void Vector::Print() const
