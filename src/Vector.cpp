@@ -59,6 +59,11 @@ void Vector::PushBack(int num)
 
 void Vector::Insert(size_t pos, int val)
 {
+    if (pos > m_size)
+    {
+        std::cerr << "Errror!! It's just tried to insert by invalid index!..\n";
+    }
+
     if (m_size == m_capasity)
     {
         //It should think about realocation/ Now just double.
@@ -114,6 +119,21 @@ int Vector::PopBack()
     }
     --m_size;
     return m_buffer[m_size];
+}
+
+void Vector::Remove(int elId)
+{
+    if (elId >= m_size)
+    {
+        std::cerr << "Error!! It's just tried to remove by invalid index!..\n";
+    }
+
+    for (size_t i = elId; i < m_size - 1; i++)
+    {
+        m_buffer[i] = m_buffer[i + 1];
+    }
+
+    --m_size;
 }
 
 void Vector::Print() const

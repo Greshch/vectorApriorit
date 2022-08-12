@@ -13,6 +13,7 @@ public:
     void Resize(size_t size);
     void Reserve(size_t n);
     void Insert(size_t pos, int val);
+    void Remove(int elId);
     ~Vector();
     void Print() const;
 
