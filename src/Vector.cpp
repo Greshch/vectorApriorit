@@ -24,6 +24,18 @@ Vector::Vector(int val, size_t size) :
     }
 }
 
+Vector::Vector(Vector const& origin)
+{
+    m_capasity = origin.m_capasity;
+    m_size = origin.m_size;
+    m_buffer = new int[m_capasity];
+
+    for (size_t i = 0; i < m_size; i++)
+    {
+        m_buffer[i] = origin.m_buffer[i];
+    }
+}
+
 Vector::~Vector()
 {
     Clear();

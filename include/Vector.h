@@ -5,6 +5,7 @@ public:
     Vector();
     Vector(size_t capasity);
     Vector(int val, size_t size);
+    Vector(Vector const& origin);
     void PushBack(int num);
     int PopBack();
     size_t Size() const;
